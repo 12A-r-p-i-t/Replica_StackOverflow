@@ -59,4 +59,60 @@ router.post("/register",function(req,res){
            })
 })
 
+
+//@type   POST
+//@route  /api/auth/logi
+//@desc   route for login of users
+//@access public
+
+router.post("/login",function(req,res){
+    const email = req.body.email;
+    const password = req.body.password;
+
+    Person.findOne({email})
+           .then(function(person){
+               if(!person){
+                   return res.status(404).json({emailError : "User not found with this email"})
+               } 
+               bcrypt.compare(password,person.password)
+                    .then(function(isCorrect){
+                        if(isCorrect){
+                            // res.json({success : "User logged in successfully"})
+                            //use payload and create token for user
+                            const payload = {
+                                id : person.id,
+                                name : person.name,
+                                email : person.email
+                            };
+                            jsonwt.sign(
+                                payload,
+                                key.secret,
+                                {expiresIn : 3600},
+                                function(err,token){
+                                    res.json({
+                                        success : true,
+                                        token : "Bearer" + token
+                                    })
+                                }
+                            )
+                        }
+                        else {
+                            res.status(400).json({passwordError : "Password did not match"})
+                        }
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                    });
+            })
+           .catch(function(err){
+               console.log(err);
+           });
+})
+
+
+
+
+
 module.exports = router;
+
+
