@@ -18,7 +18,7 @@ const PersonSchema = new Schema({
     username : {
         type : String
     },
-    profilePic : {
+    profilepic : {
         type : String,
         default : "https://learncodeonline.in/manicon.png"
     },

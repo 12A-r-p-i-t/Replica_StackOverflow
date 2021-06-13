@@ -16,6 +16,7 @@ router.get("/",function(req,res){
 //Import Schema for Person to register
 
 const Person = require("../../models/Person");
+const { session } = require("passport");
 
 //@type   POST
 //@route  /api/auth/register
@@ -61,7 +62,7 @@ router.post("/register",function(req,res){
 
 
 //@type   POST
-//@route  /api/auth/logi
+//@route  /api/auth/login
 //@desc   route for login of users
 //@access public
 
@@ -91,7 +92,7 @@ router.post("/login",function(req,res){
                                 function(err,token){
                                     res.json({
                                         success : true,
-                                        token : "Bearer" + token
+                                        token : "Bearer " + token
                                     })
                                 }
                             )
@@ -111,7 +112,25 @@ router.post("/login",function(req,res){
 
 
 
+//@type   POST
+//@route  /api/auth/profile
+//@desc   route for user profile
+//@access private
 
+
+router.get(
+    "/profile",
+    passport.authenticate("jwt",{session : false}),
+    (req,res) => {
+    // console.log(req);
+    res.json({
+        id : req.user.id,
+        name : req.user.name,
+        email : req.user.email,
+        profilepic : req.user.profilepic
+    })
+    }
+);
 
 module.exports = router;
 

@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 
 // mongoDB configuration
 const db = require("./setup/myurl").mongoURL;
+const passport = require("passport");
 
 //connecting to database
 // If not connecting try deleting the id address added on mongoDB server and adding it again
@@ -29,7 +30,12 @@ mongoose
     })
     .catch(err => console.log(err));
 
+//Passport middlewares
+app.use(passport.initialize());
 
+//config for JWT strategy
+
+require("./strategies/jsonwtStrategy")(passport);
 
 // routes
 
