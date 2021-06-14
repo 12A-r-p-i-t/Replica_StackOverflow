@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+const { session } = require("passport");
 const passport = require("passport");
 //load person model 
 const Person = require("../../models/Person");
@@ -41,5 +42,60 @@ router.post("/",passport.authenticate("jwt",{session : false}),(req,res) =>
                 .then(question => res.json(question) )
                 .catch(err => console.log("Unable to push question to database " + err));
 })
+
+
+//@type   POST
+//@route  /api/answers/:id
+//@desc   route for submitting answers to questions
+//@access PRIVATE
+
+router.post("/answers/:id", passport.authenticate("jwt",{session : false}), (req,res) => {
+    Question.findById(req.params.id)
+            .then( question => {
+                const newAnswer = {
+                    user : req.user.id,
+                    name : req.body.name,
+                    text : req.body.text
+                };
+                question.answers.unshift(newAnswer);
+                question.save()
+                        .then(question => res.json(question))
+                        .catch(err => console.log(err));
+            })
+            .catch(err => console.log(err))
+})
+
+
+//@type   POST
+//@route  /api/questions/upvote/:id
+//@desc   route for upvoting
+//@access PRIVATE
+
+router.post("/upvote/:id", passport.authenticate("jwt",{session : false}), (req,res) => {
+    Profile.findOne({user : req.user.id})
+            .then( (profile) => {
+                Question.findById(req.params.id)
+                        .then( question => {
+                            if(question.upvotes.filter(upvote => upvote.user.toString() === req.user.id.toString()).length > 0){
+                                return res.status(400).json({noUpvote : "user already upvoted"})
+                            }
+                            question.upvotes.unshift({user : req.user.id})
+                            question.save()
+                            .then( (question ) => {
+                                res.json(question)
+                            })
+                            .catch(err => console.log(err));
+                        } )
+                        .catch(err => console.log(err))
+            } )
+            .catch(err => console.log(err))
+})
+
+
+// Assignment
+// remove upvoting
+// Delete all question
+
+//Create a seperate route for linux question
 
 module.exports = router;
