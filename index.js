@@ -1,3 +1,11 @@
+// Person.js (to setup person Schema) ----> Auth.js to register and login users and encrypting passwords ----> strategy folder to create strategy to setup the session ---->
+ 
+
+
+
+
+
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -5,6 +13,7 @@ const auth = require("./routes/api/auth");
 const profile = require("./routes/api/profile");
 const questions = require("./routes/api/questions");
 const app = express();
+
 
 // Middleware for bodyParser
 
@@ -46,7 +55,7 @@ app.get("/",function(req,res){
 })
 
 // actual Routes
-
+// In this we first specify at what route do we wanna serve and then which file we wanna serve
 app.use("/api/auth",auth);
 
 app.use("/api/profile",profile);

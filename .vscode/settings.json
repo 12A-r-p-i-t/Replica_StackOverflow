@@ -8,6 +8,7 @@
         "xtree": "cpp",
         "xutility": "cpp",
         "xhash": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "map": "cpp"
     }
 }

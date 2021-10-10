@@ -35,7 +35,7 @@ router.post("/register",function(req,res){
                     password : req.body.password
                 })
                 
-                 //Encrypt password using bcryptjs
+                 //Encrypt password using bcryptjs async 
                 bcrypt.genSalt(10, function(err, salt) {
                     bcrypt.hash(newPerson.password, salt, function(err, hash) {
                         if(err){

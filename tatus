@@ -1,0 +1,53 @@
+[33mcommit 019e042db4cc31f83fa4512b22189b9badbf537f[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Arpit Shukla <shills.arpit68@gmail.com>
+Date:   Mon Jun 14 21:31:18 2021 +0530
+
+    added routes for upvotes and questions
+
+[33mcommit 05a2aae34a2f334d0aba448cb0fec175f2b3bbbe[m
+Author: Arpit Shukla <shills.arpit68@gmail.com>
+Date:   Mon Jun 14 19:21:03 2021 +0530
+
+    created a post and get route for questions
+
+[33mcommit b4f0b5356ab98b239b2e04092907cff69c06cf5d[m
+Author: Arpit Shukla <shills.arpit68@gmail.com>
+Date:   Mon Jun 14 18:34:40 2021 +0530
+
+    added functionalities such as url based access and deleting a user from database also workrole array was setup and Questions model was created
+
+[33mcommit fdfebfced835ff70c418f469d1c1218437a2eb4c[m
+Author: Arpit Shukla <shills.arpit68@gmail.com>
+Date:   Sun Jun 13 20:33:01 2021 +0530
+
+    Collected user profiles and  added  functionalities to update them and also save them
+
+[33mcommit 69ce5d6fb1c0685080217f73953b6c48ea53528e[m
+Author: Arpit Shukla <shills.arpit68@gmail.com>
+Date:   Sun Jun 13 18:24:30 2021 +0530
+
+    Created a model for user profile and then a profile route
+
+[33mcommit b753a52bb4a553e97e47be94e7f4be1f04fbe25a[m
+Author: Arpit Shukla <shills.arpit68@gmail.com>
+Date:   Sat Jun 12 03:34:19 2021 +0530
+
+    Used passport-jwt to create a strategy and created tokens using jwt
+
+[33mcommit b7d90c8c2d705042b337fe5862e1a3dca8f52f6c[m
+Author: Arpit Shukla <shills.arpit68@gmail.com>
+Date:   Fri Jun 11 15:05:16 2021 +0530
+
+    set up a Registration route and encrypted the password
+
+[33mcommit b55a3a6281e53cf65e78128ef3823e9717f74967[m
+Author: Arpit Shukla <shills.arpit68@gmail.com>
+Date:   Fri Jun 11 13:36:14 2021 +0530
+
+    Divided the Project's routes in diffrent modules using Router
+
+[33mcommit cfa1adc6110d2e4c8dc38b4df5195694634f34df[m
+Author: Arpit Shukla <shills.arpit68@gmail.com>
+Date:   Fri Jun 11 12:42:43 2021 +0530
+
+    Connected the server with MongoDB server
